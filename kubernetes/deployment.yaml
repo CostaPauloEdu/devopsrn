@@ -18,6 +18,7 @@ spec:
       containers:
       - name: "devopsrn-1"
         image: gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn
+        imagePullPolicy: IfNotPresent
         startupProbe:
           httpGet:
             path: /test
