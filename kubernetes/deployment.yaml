@@ -16,8 +16,8 @@ spec:
         app: "devopsrn"
     spec:
       containers:
-      - name: "devopsrn-sha256-1"
-        image: "gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn@sha256:68fc6723205d7b5761a1f27357d4f7aa6be98c18060a7863241fe9c5c09ebc2d"
+      - name: "devopsrn-1"
+        image: "gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn:$SHORT_SHA"
         startupProbe:
           httpGet:
             path: /test
@@ -47,7 +47,7 @@ spec:
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "devopsrn-hpa-ttsh"
+  name: "devopsrn-hpa-tjht"
   namespace: "default"
   labels:
     app: "devopsrn"
