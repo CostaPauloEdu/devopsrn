@@ -1,117 +1,111 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Picpay: Serviços Financeiros</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+   
+
+
+    <style>
+            .bg-image {
+                background-image: url("bg.jpg");
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+            a{
+                color:#0098b8;
+                text-decoration: none;
+            }
+    </style>
+
+    <title>DevOpsRN Login Page</title>
 </head>
-<div>
-    <div class="maior">
-        <div class="texto">
-        <h1>Descubra o universo de facilidades do PicPay</h1>
-        <br>
-        <p>Com o PicPay é assim: 
-            pode parcelar seus boletos
-             em até 12x, ter uma conta 
-             digital segura e gratuita, 
-             cartão de crédito sem 
-             anuidade e ainda ganhar 
-             dinheiro de volta em suas 
-             compras.</p>
-             <br>
-         <button>Baixe o app</button>
-        </div>
-        <div class="imagem">
-        <img src="imagens/garota1.png" alt="garota com celular">
-        </div>
-    </div>
-    <div class="maior fundobranco">
-        <div class="imagem">
-            <img src="imagens/garota2.png" alt="garota com celular">
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 bg-image vh-100 mb-0 mb-md-0"></div>
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <div class="w-75">
+                <h3>Login to DevOpsRN</h3>
+                <p class="mb-5">Welcome back! Login with your data that you entered during registration.</p>
+
+                <div class="d-grid gap-3">
+                    <a href="#" class="btn btn-light bg-white py-3 shadow-sm"><i class="bi bi-google me-2"></i>Login with Google</a>
+                    <a href="#" class="btn btn-light bg-white py-3 shadow-sm"><i class="bi bi-facebook me-2"></i>Login with Facebook</a>
+                </div>
+
+                <hr class="my-5">
+
+                <form action="">
+
+                    <div class="d-flex rounded-3 mb-3 bg-light ">
+                        <div class="flex-shrink-1 px-3 align-self-center">
+                            <i class="bi bi-envelope fs-4 "></i>
+                        </div>
+                        <div class="form-floating flex-grow-1">
+                            <input type="email" class="form-control bg-light border-0" id="email" placeholder="name@example.com">
+                            <label for="email">
+                                Email adress
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex rounded-3 mb-3 bg-light">
+                        <div class="flex-shrink-1 px-3 align-self-center">
+                            <i class="bi bi-lock-fill fs-4"></i>
+                        </div>
+                        <div class="form-floating flex-grow-1">
+                            <input type="password" class="form-control border-0 bg-light" id="password" placeholder="+************">
+                            <label for="password">
+                                Password
+                            </label>
+                        </div>
+                    </div>
+
+                    
+                    
+                    <div class="form-check float-start">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Remember Me
+                        </label>
+                    </div>
+                    <a href="#" class="float-end link-dark">Forgot your password?</a>
+
+                    <div class="clearfix mb-5"></div>
+
+                    <div class="d-grid gap-3 mb-3">
+                        <input type="submit" class="btn"
+                        style="background: linear-gradient(90deg, rgba(0,152,184,1) 0%, rgba(0,168,157,1) 100%);" value="Login">
+                    </div>
+
+                    
+                    <p class="text-center">Don't have an account? 
+                        <a href="#">Register</a>
+                    </p>
+
+                </form>
             </div>
-            <div class="texto">
-        <div><h2>Dinheiro não precisa ser um tabu</h2>
-            <br>
-        <p>Nascemos com a missão 
-            de tornar a vida das
-             pessoas mais fácil. Por isso, 
-             nossa nova campanha convida você 
-             a se desacostumar dos perrengues 
-             financeiros. Pagar sem ter nenhuma 
-             vantagem? Desacostuma!
-        </p>
-        <br>
-        <button>Saber mais</button>
-    </div>
-    </div>
-    </div>
-    <div class="cartao">
-        <div class="imagem">
-            <img src="imagens/cartao.png" alt="cartao de credito">
             </div>
-        <div class="texto">
-        <h2 class="cartao">PicPay Card: seu cartão que é débito, crédito, totalmente gratuito, do PicPay</h2>
-        <br>
-        <p>Usando seu cartão de crédito e débito físico ou virtual, 
-            você paga tudo e todos e ainda pode parcelar no crédito. Além disso, 
-            você ainda pode ganhar cashback, ou seja, dinheiro de volta. 
-        </p>
-        <br>
-        <button>Pedir cartão de crédito</button>
-    </div>
-    </div>
-    <br>
-    <h1>Pague tudo e todos com Picpay</h1>
-    <br>
-    <div class="maior fundobranco2">
-        <div class="imagem">
-            <img src="imagens/garota4.jpg" alt="garota com celular">
-            </div>
-            <div class="texto">
-        <div>
-        <h2>Faz um Pix</h2>
-            <br>
-        <p>Com o Pix você paga tudo e todos, igual ao Picpay.
-            O dinheiro chega em segundos de forma segura e você não paga 
-            nada por isso.
-        </p>
-        <br>
-        <button class="pix">Fazer um Pix</button>
-    </div>
-    </div>
-    </div>
-    <div class="maior">
-        <div class="texto">
-        <h1>No PicPay seu dinheiro fica seguro e rende mais que a poupança</h1>
-        <br>
-        <p>Além de fazer seu dinheiro render, você pode usá-lo na hora que quiser 
-            para pagamentos, transferências e saques. No PicPay você controla tudo 
-            o que entra e o que sai na hora, de forma fácil e direto do celular.</p>
-            <br>
-         <button class="pix">Conhecer rendimentos</button>
-        </div>
-        <div class="imagem">
-        <img src="imagens/carteira.png" alt="carteira com dinheiro">
         </div>
     </div>
-    <div class="maior fundobranco">
-        <div class="imagem">
-            <img src="imagens/garota3.png" alt="garota com celular">
-            </div>
-            <div class="texto">
-        <div><h2>PicPay Store: você compra com desconto e direto pelo celular</h2>
-            <br>
-        <p>NNa PicPay Store você encontra suas lojas favoritas em um só app. 
-            proveita descontos exclusivos e ainda pode ganhar dinheiro de volta. 
-            Você também pode fazer recarga de celular, de cartão de transporte e pagar 
-            seus streamings de séries e filmes direto do seu celular.
-        </p>
-        <br>
-        <button>Conhecer a Store</button>
-    </div>
-    </div>
-    </div>
+
+ 
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
