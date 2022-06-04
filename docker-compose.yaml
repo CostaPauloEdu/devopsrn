@@ -2,6 +2,7 @@ version: "3.3"
 
 services:
   devopsrn:
+    build: .
     container_name: devopsrn
     image: azevedo.paulo/devopsrn
     ports:

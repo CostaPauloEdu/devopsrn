@@ -1,0 +1,91 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "devopsrn"
+  namespace: "default"
+  labels:
+    app: "devopsrn"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "devopsrn"
+  template:
+    metadata:
+      labels:
+        app: "devopsrn"
+    spec:
+      containers:
+      - name: "devopsrn-1"
+        image: azevedo.paulo/devopsrn
+        imagePullPolicy: IfNotPresent
+        startupProbe:
+          httpGet:
+            path: /test
+            port: 80
+            scheme: HTTP
+          failureThreshold: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /test
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 5
+          periodSeconds: 15
+          successThreshold: 1
+          failureThreshold: 8
+        readinessProbe:
+          httpGet:
+            path: /test
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 5
+          periodSeconds: 15
+          successThreshold: 1
+          failureThreshold: 8
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "devopsrn-hpa-yuqq"
+  namespace: "default"
+  labels:
+    app: "devopsrn"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "devopsrn"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "devopsrn-service"
+  namespace: "default"
+  labels:
+    app: "devopsrn"
+spec:
+  ports:
+  - name: "80-to-80-tcp"
+    protocol: "TCP"
+    port: 80
+    targetPort: 80
+  - name: "3306-to-3306-tcp"
+    protocol: "TCP"
+    port: 3306
+    targetPort: 3306
+  - name: "9000-to-9000-tcp"
+    protocol: "TCP"
+    port: 9000
+    targetPort: 9000
+  selector:
+    app: "devopsrn"
+  type: "NodePort"
