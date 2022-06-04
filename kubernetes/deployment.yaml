@@ -1,33 +1,23 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: "apps/v1"
+kind: "Deployment"
 metadata:
+  name: "devopsrn"
+  namespace: "default"
   labels:
-    app: web
-  name: website-devopsrn
-  namespace: default
+    app: "devopsrn"
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: web
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-    type: RollingUpdate
+      app: "devopsrn"
   template:
     metadata:
       labels:
-        app: web
+        app: "devopsrn"
     spec:
       containers:
-        resources:
-          requests:
-            cpu: 500m
-            memory: 512Mi
-        image: gcr.io/dealersites/bitbucket.org/dealersites/website-devopsrn
-        imagePullPolicy: IfNotPresent
-        name: website-devopsrn
+      - name: "devopsrn-sha256-1"
+        image: "gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn@sha256:68fc6723205d7b5761a1f27357d4f7aa6be98c18060a7863241fe9c5c09ebc2d"
         startupProbe:
           httpGet:
             path: /test
@@ -53,40 +43,49 @@ spec:
           periodSeconds: 15
           successThreshold: 1
           failureThreshold: 8
-
 ---
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
 metadata:
+  name: "devopsrn-hpa-ttsh"
+  namespace: "default"
   labels:
-    app: website-devopsrn
-  name: website-devopsrn-hpa
-  namespace: default
+    app: "devopsrn"
 spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "devopsrn"
+    apiVersion: "apps/v1"
+  minReplicas: 1
   maxReplicas: 5
   metrics:
-    - resource:
-        name: cpu
-        targetAverageUtilization: 80
-      type: Resource
-  minReplicas: 1
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: website-devopsrn
-
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
 ---
-apiVersion: v1
-kind: Service
+apiVersion: "v1"
+kind: "Service"
 metadata:
-  name: website-devopsrn-service
+  name: "devopsrn-service"
+  namespace: "default"
   labels:
-    app: web
+    app: "devopsrn"
 spec:
-  type: ClusterIP
   ports:
-  - port: 80
+  - name: "80-to-80-tcp"
+    protocol: "TCP"
+    port: 80
     targetPort: 80
-    nodePort: 30011
+  - name: "3306-to-3306-tcp"
+    protocol: "TCP"
+    port: 3306
+    targetPort: 3306
+  - name: "9000-to-9000-tcp"
+    protocol: "TCP"
+    port: 9000
+    targetPort: 9000
   selector:
-    app: web
+    app: "devopsrn"
+  type: "LoadBalancer"
+  loadBalancerIP: "34.95.222.83"
