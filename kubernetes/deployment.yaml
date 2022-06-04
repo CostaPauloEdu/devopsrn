@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: "devopsrn-1"
-        image: "gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn:$COMMIT_SHA"
+        image: gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn
         imagePullPolicy: IfNotPresent
         startupProbe:
           httpGet:
@@ -48,7 +48,7 @@ spec:
 apiVersion: "autoscaling/v2beta1"
 kind: "HorizontalPodAutoscaler"
 metadata:
-  name: "devopsrn-hpa-nhzu"
+  name: "devopsrn-hpa-yuqq"
   namespace: "default"
   labels:
     app: "devopsrn"
