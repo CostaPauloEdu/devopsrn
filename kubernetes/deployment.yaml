@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: "devopsrn-1"
-        image: "gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn:$SHORT_SHA"
+        image: "gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn"
         startupProbe:
           httpGet:
             path: /test
