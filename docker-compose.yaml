@@ -1,0 +1,13 @@
+version: "3.3"
+
+services:
+  devopsrn:
+    container_name: devopsrn
+    image: azevedo.paulo/devopsrn
+    ports:
+      - "80:80"
+      - "9000:9000"
+      - "3306:3306"
+    volumes:
+      - ./app:/var/www/application
+      - ./bd:/var/lib/mysql

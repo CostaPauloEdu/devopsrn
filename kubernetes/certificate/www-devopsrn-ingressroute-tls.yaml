@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata: 
+  name: www-devopsrn-ingressroute-tls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`www.devopsrn.com.br`)
+    kind: Rule
+    services:
+    - name: varnish-svc
+      port: 80     
+  tls:
+    secretName: www-devopsrn-secret

@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+  name: website-devopsrn
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        resources:
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        image: gcr.io/dealersites/bitbucket.org/dealersites/website-devopsrn
+        imagePullPolicy: IfNotPresent
+        name: website-devopsrn
+        startupProbe:
+          httpGet:
+            path: /test
+            port: 80
+            scheme: HTTP
+          failureThreshold: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /test
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 5
+          periodSeconds: 15
+          successThreshold: 1
+          failureThreshold: 8
+        readinessProbe:
+          httpGet:
+            path: /test
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 5
+          periodSeconds: 15
+          successThreshold: 1
+          failureThreshold: 8
+
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: website-devopsrn
+  name: website-devopsrn-hpa
+  namespace: default
+spec:
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 80
+      type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: website-devopsrn
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-devopsrn-service
+  labels:
+    app: web
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30011
+  selector:
+    app: web
