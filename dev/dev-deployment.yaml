@@ -6,7 +6,7 @@ metadata:
   labels:
     app: "devopsrn"
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: "devopsrn"
@@ -19,6 +19,13 @@ spec:
       - name: "devopsrn-1"
         image: azevedo.paulo/devopsrn
         imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
         startupProbe:
           httpGet:
             path: /test
@@ -78,14 +85,17 @@ spec:
     protocol: "TCP"
     port: 80
     targetPort: 80
+    nodePort: 30000
   - name: "3306-to-3306-tcp"
     protocol: "TCP"
     port: 3306
     targetPort: 3306
+    nodePort: 30001
   - name: "9000-to-9000-tcp"
     protocol: "TCP"
     port: 9000
     targetPort: 9000
+    nodePort: 30002
   selector:
     app: "devopsrn"
   type: "NodePort"

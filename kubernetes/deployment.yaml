@@ -6,7 +6,7 @@ metadata:
   labels:
     app: "devopsrn"
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: "devopsrn"
@@ -19,6 +19,13 @@ spec:
       - name: "devopsrn-1"
         image: gcr.io/savvy-folio-344820/github.com/costapauloedu/devopsrn
         imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
         startupProbe:
           httpGet:
             path: /test
